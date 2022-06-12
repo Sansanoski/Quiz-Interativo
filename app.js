@@ -1,27 +1,22 @@
-const buttonToStartGame = document.querySelector('button')
+const buttonStartQuiz = document.querySelector('button')
+const buttonShowResult = document.querySelector('.btnShowResult')
+const buttonComeBackMainMenu = document.querySelector('.backMainMenu')
 const form = document.querySelector('form')
-const div = document.querySelector('.quiz-texto')
-const buttonResult = document.querySelector('.btnShowResult')
+const introToQuiz = document.querySelector('.quiz-texto')
 const boxShowResult = document.querySelector('.box-text-result')
-const p = document.createElement('p') 
-const closeButtonInboxResult = document.querySelector('span')
-const buttonToComeBackMainMenu = document.querySelector('.backMainMenu')
-const link = document.querySelector('a')
+const textOfResult = document.createElement('p') 
+const containerQuiz = document.querySelector('.container-quiz')
 
-let score = 0 
-
-
-const correctAnswer = ['B' , 'C' ,'A', 'B' ,'B']
-
-buttonToStartGame.addEventListener('click' , () => {
+const startQuiz = () => {
     form.style.display = 'block'
-    div.style.display ='none'
-    buttonResult.style.display = 'block'
-    buttonToComeBackMainMenu.style.display = 'block'
-})
+    introToQuiz.style.display ='none'
+    buttonShowResult.style.display = 'block'
+    buttonComeBackMainMenu.style.display = 'block'
+}
 
-buttonResult.addEventListener('click' , event => {
-    event.preventDefault()
+const getScore = () => {
+    const correctAnswer = ['B' , 'C' ,'A', 'B' ,'B']
+
     const userAnswers = [
         form.question1.value,
         form.question2.value,
@@ -29,25 +24,43 @@ buttonResult.addEventListener('click' , event => {
         form.question4.value,
         form.question5.value
     ]
+    let score = 0 
+
     userAnswers.forEach(( answer , index) => {
         if(answer === correctAnswer[index]){
             score += 20
         }
     })
-    p.textContent = ` ${score} % de acertos ` 
-    boxShowResult.insertAdjacentElement('afterbegin' , p)
-    p.setAttribute('class' , 'textInsideTheBox')
-    boxShowResult.classList.add('show')
-    score = 0 
+    return score
+}
 
-})
-closeButtonInboxResult.addEventListener('click' , () => {
-    boxShowResult.classList.remove('show')
-})
-buttonToComeBackMainMenu.addEventListener('click' , () => {
+const ShowResult = event => {
+    event.preventDefault()
+    const score = getScore()
+
+    textOfResult.textContent = ` ${score} % de acertos ` 
+    textOfResult.setAttribute('class','textInsideTheBox')
+    boxShowResult.classList.add('show') 
+    boxShowResult.insertAdjacentElement('afterbegin', textOfResult)
+}
+
+const buttonBackMenu = () => {
     form.style.display = 'none'
-    buttonResult.style.display =' none'
-    buttonToComeBackMainMenu.style.display ='none'
+    buttonShowResult.style.display =' none'
+    buttonComeBackMainMenu.style.display ='none'
     boxShowResult.classList.remove('show')
-    div.style.display = 'flex'
-})
+    introToQuiz.style.display = 'flex'
+}
+const removeBoxResult = event => {
+    const clickedElement = event.target.tagName
+
+    if(clickedElement === 'DIV'|| clickedElement === 'P' ||clickedElement === 'SPAN' ){
+        boxShowResult.classList.remove('show')
+        return
+    }
+}
+
+buttonStartQuiz.addEventListener('click' , startQuiz)
+buttonShowResult.addEventListener('click' ,ShowResult)
+buttonComeBackMainMenu.addEventListener('click',buttonBackMenu)
+containerQuiz.addEventListener('click',removeBoxResult)
