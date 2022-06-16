@@ -1,145 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto+Mono:ital,wght@1,700&display=swap');
 *{
     box-sizing: border-box;
     margin: 0%;
     padding: 0;
 }
 body {
-    background:linear-gradient(rgba(0,8,51,0.6) ,rgba(0,8,51,0.8)) ,url(https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8d29ybGR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);
-    background-position:center;
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100vh;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #585c65;
+    color: #fff;
+    height: 150px;
+}
+h1{
+    font-family: 'Fascinate', cursive;
+    font-size: 50px;
+}
+h2 {
+    padding: 20px;
+   font-size: 30px;
+   font-family: 'Fascinate', cursive;
 }
 .container-quiz {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-.quiz-texto {
-    display: flex;
-    flex-direction: column;    
-    align-items: center;   
-    justify-content: space-around;
-    height: 200px;
-}
-.quiz-texto h1 {
-    color: #fff;
-    font-size: 50px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: relative;  
-}
-.quiz-texto h1::after{
-    content: '';
-    width: 100%;
-    background-color: white;
-    height: 2px;
-    position: absolute;
-    left: 0;
-    bottom: -14px;
-}
-.play {
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: #ff1533;
-    color: white;
-    font-size: 20px;
-    border: none;
-    font-family:Verdana, Geneva, Tahoma, sans-serif ;
-    cursor: pointer;
-}
-.play:active {
-    transform: scale(.90);
-}   
+    background-color: #cbcad6;
+}  
 
 form {
-    display: none;
-    height: 600px;
-    width: 800px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
 }
-
-
 form .div-question {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 120px;
-    color: white;
-    justify-content: center;
+    margin: 20px;
 }
-label {
+.div-question >label {
     margin: 0;
     font-size: 25px;
+    font-family: 'Fascinate', cursive;
+    color: black;
 }
 .optionAnswers{
     font-size: 20px;
-    height: 30px;
-    width: 600px;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-direction: column;
+}
+.optionAnswers > div {
+    margin-top:10px ;
+
 }
  .btnShowResult {
-    bottom: 10px;
-    width: 150px;
-    height: 30px;
+    width: 200px;
+    height: 50px;
     background-color: #ff1533;
     color: white;
-    border: none;
-    border-radius: 10px;
-    display: none;
+    border-radius: 5px;
+    text-align: center;
     text-transform: uppercase;
+    margin: 30px;
 }
-.div-btn .backMainMenu{
-    bottom: 10px;
-    width: 150px;
-    height: 30px;
-    background-color: #ff1533;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    display: none;
-    text-transform: uppercase;
-}
-.div-btn .backMainMenu a {
-    color: white;
-    text-decoration: none;
-}
-.btnShowResult:active {
-    transform: scale(.90);
-}
+
 .div-btn {
-    width: 400px;
     display: flex;
-    justify-content: space-around;
-}
-.box-text-result {
-    height: 200px;
-    width: 400px;
-    background-color: #eee;
-    position: absolute;
-    border-radius: 10px;
-    transform: translate(0% , -600%);
-    transition: all 1s ease-in-out;
-    display:flex;
     justify-content: center;
-    align-items: center;
-}
-.show{
-    transform: translate(0%, 0%);
-}
-.textInsideTheBox {
-    font-size: 30px;
-    font-style: oblique;
-}
-span{
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    cursor: pointer;
-}
-.remove {
+} 
+.box-text-result{
+    height: 100px;
+    width: 100%;
+    background-color: #23252b;
+    color: #cbcad6;
     display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-family: 'Fascinate', cursive;
+}
+
+.show {
+    display: flex;
+    font-family: 'Fascinate', cursive;
+}
+label {
+    font-family: 'Fascinate', cursive;
 }

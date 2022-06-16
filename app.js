@@ -1,66 +1,55 @@
-const buttonStartQuiz = document.querySelector('button')
-const buttonShowResult = document.querySelector('.btnShowResult')
-const buttonComeBackMainMenu = document.querySelector('.backMainMenu')
 const form = document.querySelector('form')
-const introToQuiz = document.querySelector('.quiz-texto')
-const boxShowResult = document.querySelector('.box-text-result')
-const textOfResult = document.createElement('p') 
-const containerQuiz = document.querySelector('.container-quiz')
+const btnShowResult = document.querySelector('.btnShowResult')
+const divBoxTextResult = document.querySelector('.box-text-result')
+const resultOfquiz = document.querySelector('span')
 
-const startQuiz = () => {
-    form.style.display = 'block'
-    introToQuiz.style.display ='none'
-    buttonShowResult.style.display = 'block'
-    buttonComeBackMainMenu.style.display = 'block'
+let score = 0
+
+const correctAnswer = ['B','C','A','B','B']
+
+const goTopPage = () => window.scrollTo({
+    top : 0,
+    behavior: "smooth"
+})
+
+const getUserAnswers = () => {
+    let userAnswers = []
+    correctAnswer.forEach((_answer , index) => {
+        const userAnswer = form[`question${index + 1}`].value
+        userAnswers.push(userAnswer)
+    })
+    return userAnswers
 }
 
-const getScore = () => {
-    const correctAnswer = ['B' , 'C' ,'A', 'B' ,'B']
-
-    const userAnswers = [
-        form.question1.value,
-        form.question2.value,
-        form.question3.value,
-        form.question4.value,
-        form.question5.value
-    ]
-    let score = 0 
-
-    userAnswers.forEach(( answer , index) => {
-        if(answer === correctAnswer[index]){
+const calculateScoreUser = (userAnswers) => {
+    correctAnswer.forEach((answer , index) =>{
+        const isUserAnswerCorrerct = answer === userAnswers[index]
+        if(isUserAnswerCorrerct){
             score += 20
         }
     })
-    return score
 }
 
-const ShowResult = event => {
-    event.preventDefault()
-    const score = getScore()
+const animateScore = () => {
+    let counter = 0 
 
-    textOfResult.textContent = ` ${score} % de acertos ` 
-    textOfResult.setAttribute('class','textInsideTheBox')
-    boxShowResult.classList.add('show') 
-    boxShowResult.insertAdjacentElement('afterbegin', textOfResult)
-}
-
-const buttonBackMenu = () => {
-    form.style.display = 'none'
-    buttonShowResult.style.display =' none'
-    buttonComeBackMainMenu.style.display ='none'
-    boxShowResult.classList.remove('show')
-    introToQuiz.style.display = 'flex'
-}
-const removeBoxResult = event => {
-    const clickedElement = event.target.tagName
-
-    if(clickedElement === 'DIV'|| clickedElement === 'P' ||clickedElement === 'SPAN' ){
-        boxShowResult.classList.remove('show')
-        return
+   const intervalID = setInterval(() => {
+    if(counter === score){
+        clearInterval(intervalID)
     }
+    divBoxTextResult.textContent = `Você acertou ${counter ++} % das questões  `
+   } , 50)
 }
 
-buttonStartQuiz.addEventListener('click' , startQuiz)
-buttonShowResult.addEventListener('click' ,ShowResult)
-buttonComeBackMainMenu.addEventListener('click',buttonBackMenu)
-containerQuiz.addEventListener('click',removeBoxResult)
+const insertElementIntoDOM = () => {
+    divBoxTextResult.classList.add("show")
+    form.insertAdjacentElement('beforebegin' , divBoxTextResult)
+}
+
+btnShowResult.addEventListener('click' , () => {
+    goTopPage()
+    const userAnswers = getUserAnswers()
+    calculateScoreUser(userAnswers)
+    animateScore()
+    insertElementIntoDOM()
+})
