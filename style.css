@@ -89,3 +89,47 @@ form .div-question {
 label {
     font-family:sans-serif;
 }
+@media (max-width:320px) {
+    h1 {
+        font-size:30px ;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    form {
+        margin: 0;
+    }
+    .div-question >label{
+        font-size: 20px;
+    }
+    label {
+        font-size:15px ;
+    }
+    .btnShowResult{
+        width: 150px;
+        height: 30px;
+        font-size: 13px;
+    }
+}
+@media (max-width:426px) {
+    h1 {
+        font-size: 25px;
+    }
+    h2 {
+        font-size: 23px;
+    }
+    form {
+        margin: 0;
+    }
+    .div-question >label{
+        font-size: 20px;
+    }
+    label {
+        font-size:15px ;
+    }
+    .btnShowResult{
+        width: 150px;
+        height: 30px;
+        font-size: 13px;
+    }
+}
