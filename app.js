@@ -53,3 +53,4 @@ btnShowResult.addEventListener('click' , () => {
     animateScore()
     insertElementIntoDOM()
 })
+
