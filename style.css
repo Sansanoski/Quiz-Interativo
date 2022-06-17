@@ -110,6 +110,10 @@ label {
         height: 30px;
         font-size: 13px;
     }
+    .box-text-result{
+        font-size: 25px;
+        text-align: center;
+    }
 }
 @media (max-width:426px) {
     h1 {
@@ -131,5 +135,9 @@ label {
         width: 150px;
         height: 30px;
         font-size: 13px;
+    }
+    .box-text-result{
+        font-size: 25px;
+        text-align: center;
     }
 }
